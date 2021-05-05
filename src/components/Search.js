@@ -1,14 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Search() {
+function Search({changeFilter}) {
+
+  let [search, updateSearch] = useState("")
+
+  function onType(value) {
+    updateSearch(value)
+    changeFilter(value) 
+  }
+
   return (
     <div className="searchbar">
       <label htmlFor="search">Search Plants:</label>
       <input
-        type="text"
-        id="search"
-        placeholder="Type a name to search..."
-        onChange={(e) => console.log("Searching...")}
+        type = "text"
+        id = "search"
+        placeholder = "Type a name to search..."
+        value = {search}
+        onChange={(e) => onType(e.target.value)}
       />
     </div>
   );
